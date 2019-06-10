@@ -19,7 +19,7 @@ export default function App() {
   }
 
   const addTodo = (text: string):void => {
-    const newTodos: ITodo[] = [...todos, {text, complete: false}]
+    const newTodos: ITodo[] = [{text, complete: false}, ...todos]
     setTodos(newTodos)
   }
 
@@ -35,32 +35,50 @@ export default function App() {
     setTodos(newTodos)
   }
 
-
-
   return (
     
-    <Fragment>
+    <Fragment >
+      <div className="container text-center p-4"> 
+      <h1 className="m-2 pb-3">Today's DoDo!</h1>
 
-      <h1>Things To Do</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="p-2" onSubmit={handleSubmit}>
         <input type="text" value={value} onChange={e => setValue(e.target.value)} required />
-        <button type="submit">Add Todo</button>
+        <button type="submit" className="my-1" >
+          <i className="fas fa-plus " style={{color: "#19aaca"}}></i>
+        </button>
+  
       </form>
-      <section>
+
+      <section className="p-2">
         {todos.map((todo: ITodo, index: number) => (
           <Fragment key={index}>
-          <div style={{ textDecoration: todo.complete ? 
-          'line-through' : ""}}>{todo.text}</div>
-          <button onClick ={() => completeTodo(index)}>
-            {' '}
-            {todo.complete ? 'Incomplete' : 'complete'}
-            {' '}
-          </button>
-          <button onClick={() => removeTodo(index)}>&times;</button>
+
+            {/* bar */}
+            <div className=" m-2 p-1 px-2" 
+            style={{backgroundColor: "#1cbbdb", borderRadius: "1em", overflowWrap: "break-word", opacity: todo.complete ? 
+              0.5 : 1}}> 
+
+                {/* trash */}
+                <div className="rounded-circle  m-2 bg-white float-right" style={{ width: "2em", lineHeight: "2em" }}>
+                    <i onClick={() => removeTodo(index)} className="far fa-trash-alt rounded-circle"></i>
+                </div>
+
+                {/* checkmark */}
+                <div className="rounded-circle  m-2 bg-white float-right" style={{ width: "2em", lineHeight: "2em" }}>
+                    <i onClick ={() => completeTodo(index)} className={`fas ${todo.complete? "fa-redo-alt" : "fa-check"}`}></i>
+                </div>
+    
+              {/* todo text */}
+              <div className="p-1 px-2 m-2  text-white text-left" style={{ textDecoration: todo.complete ? 
+              'line-through' : ""}}>
+                <h4 className="mb-0">{todo.text}</h4>
+              </div>
+
+            </div>
           </Fragment>
         ))}
       </section>
-
+      </div>
     </Fragment>
   );
 }

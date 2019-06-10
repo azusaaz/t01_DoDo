@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: #1cbbdb
+}
+
+i:hover {
+  cursor: pointer;
+}

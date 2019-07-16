@@ -39,7 +39,7 @@ export default function App() {
     
     <Fragment >
       <div className="container text-center p-4"> 
-      <h1 className="m-2 pb-3">Today's DoDo!</h1>
+      <h1 className="m-2 pb-3">DoDo Today!</h1>
 
       <form className="p-2" onSubmit={handleSubmit}>
         <input type="text" value={value} onChange={e => setValue(e.target.value)} required />
